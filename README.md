@@ -3,11 +3,11 @@ Explanation and performance benchmark on GB algorithms (GBDT, XGBoost, LGBM, Cat
 
 # Gradient Boosting Decision Tree
 ## Resources:
-- 
+- Original Paper (Friedman, 1999): https://jerryfriedman.su.domains/ftp/trebst.pdf 
 - 
 - 
 
-# XGBoost
+# eXtreme Gradient-Boost (XGBoost)
 
 # Dropout Multiple Additive Regression Trees (DART)
 

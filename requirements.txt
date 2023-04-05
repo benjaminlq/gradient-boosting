@@ -1,3 +1,4 @@
+dask
 numpy
 pandas
 sklearn
