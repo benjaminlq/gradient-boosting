@@ -2,12 +2,12 @@
 Explanation and performance benchmark on GB algorithms (GBDT, XGBoost, LGBM, CatBoost)
 
 # Gradient Boosting Decision Tree
-## Resources:
+## I. Resources:
 - Original Paper (Friedman, 1999): https://jerryfriedman.su.domains/ftp/trebst.pdf 
 - Youtube Explanation (StatQuest): https://www.youtube.com/watch?v=3CC4N4z3GJc&list=PLblh5JKOoLUJjeXUvUE0maghNuY2_5fY6
 - Scikit-Learn documentation: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html & https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html#sklearn.ensemble.GradientBoostingRegressor
 
-## Algoirithms:
+## II. Algorithms:
 Extracted from Original Paper: https://jerryfriedman.su.domains/ftp/trebst.pdf 
 ### 1. General Algorithm:
 - Step 1: Find Initial Predicted y s.t. residual is minimized (m = 0)
@@ -57,8 +57,8 @@ $$ p_k(x) = \frac{exp(F_k(x))}{\sum{exp(F_l(x))}} $$
 
 <img align="center" width=800 src="https://user-images.githubusercontent.com/99384454/230290602-0430560a-6eb4-48c0-8a3d-50a87ff255b5.png">
 
-### 4. Implementation
-#### 4.1 Fit, train and inference using **scikit-learn** library
+## III. Implementation
+### 1. Fit, train and inference using **scikit-learn** library
 
 ```
 from sklearn.ensemble import GradientBoostingClassifier, GradientBoostingRegressor
@@ -77,7 +77,7 @@ y_preds_r = gbr_model.predict(x_test)
 regression_score = mean_squared_error(y_test_r, y_preds_r)
 ```
 
-#### 4.2 Hyperparameters for tuning
+### 2. Hyperparameters for tuning
 - `loss`: For regression: ‘squared_error’, ‘absolute_error’, ‘huber’, ‘quantile’. Huber loss function (M-regression) is used for cases with long-tailed error distributions and outliers while maintaining high efficiency for normally distributed errors. 'quantile' is used for quantile regression
   For classification, 'log-loss' or 'exponential'.
 - `learning rate` and `n-estimators`: `learning-rate` shrinks contribution of each tree by a fixed amount (Regularization), reducing the overfitting impact of a single tree to data. This also means that with lower `learning-rate`, more `n-estimators` (trees) are needed for GBDT to fit to the training data (reducing bias). A good strategy is to use **low** `learning-rate` and **high** `n-estimators`. <br>
@@ -98,15 +98,46 @@ regression_score = mean_squared_error(y_test_r, y_preds_r)
   - `max_features`: Number of features to consider when looking for best split. Choosing `max_features < n_features` reduces training time but leads to a reduction in variance and an increase in bias.
   - `subsample`: Determines the amount of training data used for fitting. Using a portion of training data results in faster training time but leads to a reduction in variance and an increase in bias.
 
-#### 4.3 Key model attributes and methods
+### 3 Key model attributes and methods
 - `feature_importance_`: feature importance
 - `staged_predict(X)` and `staged_predict_proba(X)`: Predict classification and regression target at each stage for X.
 - `predict_proba(X)` and `predict_log_proba(X)`: For **classification** only. Return predicted values in probability. Useful if a different threshold needs to be set. 
  
 # eXtreme Gradient-Boost (XGBoost)
+## I. Resources
+- Original Paper (Tianqi Chen, 2016): https://arxiv.org/pdf/1603.02754.pdf
+- Youtube Explanation (StatQuest): https://www.youtube.com/watch?v=OtD8wVaFm6E&t=4s
+- XGBoost documentation: https://xgboost.readthedocs.io/en/stable/
+
+## II. Algorithms
+
+## III. Implementations
 
 # Dropout Multiple Additive Regression Trees (DART)
+## I. Resources
+- Original Paper (Rashmi & Gilad-Bachrach, 2015): https://arxiv.org/abs/1505.01866
+
+## II. Algorithms
+
+## III. Implementations
+
 
 # Light Gradient-Boosting Machine (LGBM)
+## I. Resources
+- Original Paper (Guolin Ke et al, 2017): https://proceedings.neurips.cc/paper_files/paper/2017/file/6449f44a102fde848669bdd9eb6b76fa-Paper.pdf
+- LGBM documentation: https://lightgbm.readthedocs.io/en/v3.3.2/index.html
+
+## II. Algorithms
+
+## III. Implementations
+
 
 # CatBoost
+## I. Resources
+- Original Paper (Tianqi Chen, 2016): https://arxiv.org/pdf/1603.02754.pdf
+- Youtube Explanation (StatQuest): https://www.youtube.com/watch?v=OtD8wVaFm6E&t=4s
+- XGBoost documentation: https://xgboost.readthedocs.io/en/stable/
+
+## II. Algorithms
+
+## III. Implementations
