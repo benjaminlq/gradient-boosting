@@ -94,9 +94,8 @@ regression_score = mean_squared_error(y_test_r, y_preds_r)
   - `max_depth` control tree size by limiting tree depth.
   - `max_leaf_nodes` control tree size by limiting no of leaf nodes. 
   - `ccp_alpha` add regularization for each nodes of the tree (Minimal Cost-Complexity Pruning)
-- **Training Speed**
-  - `max_features`: Number of features to consider when looking for best split. Choosing `max_features < n_features` reduces training time but leads to a reduction in variance and an increase in bias.
-  - `subsample`: Determines the amount of training data used for fitting. Using a portion of training data results in faster training time but leads to a reduction in variance and an increase in bias.
+  - `max_features`: Number of features to consider when looking for best split. Choosing `max_features < n_features` leads to a reduction in variance and an increase in bias.
+  - `subsample`: Determines the amount of training data used for fitting. Using a portion of training data leads to a reduction in variance and an increase in bias.
 
 ### 3 Key model attributes and methods
 - `feature_importance_`: feature importance
