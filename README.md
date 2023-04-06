@@ -22,6 +22,10 @@ Extracted from Original Paper: https://jerryfriedman.su.domains/ftp/trebst.pdf
 ### 2. Gradient-Boosting Regression Trees (GBRT)
 There are several types of loss functions which can be used: least-square (LS), least-absolute-deviation (LSD), Huber (M). The most common is least-square, which is also the default implementation inside scikit-learn library. For LS, the initial prediction which minimizes the residual is simply the mean of all target values inside the training set.
 
+Loss function is **mean-squared-error** .
+
+$$ L(y,F(x)) = 1/2\*(y-F(x))^2 $$
+
 <img align="center" width=800 src="https://user-images.githubusercontent.com/99384454/230270553-b3955362-d6fb-4c99-8ad2-185e64ad5517.png">
 <img align="center" width=800 src="https://user-images.githubusercontent.com/99384454/230275697-121d4c95-1650-4c81-a364-8ae9258fe7a2.png">
 <img align="center" width=800 src="https://user-images.githubusercontent.com/99384454/230275794-82c5fda2-9e7b-4ccf-80f1-c08088d6ff6c.png">
@@ -109,6 +113,42 @@ regression_score = mean_squared_error(y_test_r, y_preds_r)
 - XGBoost documentation: https://xgboost.readthedocs.io/en/stable/
 
 ## II. Algorithms
+### 1. Regularized Loss Function with Gradient Tree Boosting
+
+Compared to GBDT, xGBoost loss function add extra regularization term, which penalizes complex tree. The regularization terms penalizes the trees for having additional leaf nodes and sum of scores of the leave nodes (which increases with the number of leaf nodes).
+
+<img align="center" width=1000 src="https://user-images.githubusercontent.com/99384454/230407389-8b2efc40-eefc-473f-b151-69748e5aae5e.png">
+
+The difference between the observed values $y_i$ and predicted values $y\_hat_i^{t-1} + f_t(x_i)$ is approximated using Second Degree Taylor Series Expansion to yield an expression easily differentiable w.r.t f(x). $x = f_t(x_i)$ and $a = \frac{d}{d(y_hat_i^{t-1})}l(y_i, y_hat_i^{t-1})$
+
+**Taylor's Theorem** (https://en.wikipedia.org/wiki/Taylor%27s_theorem)
+
+<img align="center" width=1000 src="https://user-images.githubusercontent.com/99384454/230409510-e3327e99-6cb3-4272-8339-6f1bb57dc8e5.png">
+
+<img align="center" width=650 src="https://user-images.githubusercontent.com/99384454/230411978-739fd6ba-7758-4644-85b4-6c840d008595.png">
+
+Regularization term lambda reduces the impact of data to the objective function (Loss = Tree Impurity), hence reduces overfitting. Higher regularization term will lead to bigger score (impurity) and smaller split score (impurity reduction) on nodes.
+
+<img align="center" width=650 src="https://user-images.githubusercontent.com/99384454/230417813-1f2ba1e3-a34f-48cd-b99b-523d5b31aee5.png">
+
+### 2. Regularization
+Several regularization methods were included inside XGBoost implementation
+- Regularization Loss Function with `lambda` and `gamma` (II.1)
+- `learning-rate`: Shrinkage reduce impact of current tree to the prediction and allows future tree to improve the model.
+- **Sub-sampling** of data and features both help to reduce variance at the expense of increase bias.
+
+### 3. Split Algorithm
+Split Algorithm is done by greedily creating tree nodes at each time step with reduces most loss. Loss reduction is sum of losses of child leaves minus parent leaf.
+
+![image](https://user-images.githubusercontent.com/99384454/230453838-7d809364-3526-410e-825a-583d9f5da760.png)
+
+#### 3.1 Exact Greedy Algorithm
+Iterate through all possible splits. Guarantee to find the best possible split at that node. For continuous features, sorting is required making this computationally expensive.
+
+![image](https://user-images.githubusercontent.com/99384454/230454604-2cccea8c-1f15-42aa-ae6e-06f746571ea9.png)
+
+#### 3.2 Approximate Algorithm
+Allocate continuous values into buckets (histogram) and aggregate statistics within buckets. Best split is determined based on the buckets aggregated statistics. Candidate split proposals can be computed just once at the beginning (**global**) or every iterations (**local**). **Global** method needs few proposal but requires more splits while **Local** needs more proposal (every iteration), but need fewer split.
 
 ## III. Implementations
 
@@ -127,6 +167,8 @@ regression_score = mean_squared_error(y_test_r, y_preds_r)
 - LGBM documentation: https://lightgbm.readthedocs.io/en/v3.3.2/index.html
 
 ## II. Algorithms
+### 1. 
+### 2. 
 
 ## III. Implementations
 
