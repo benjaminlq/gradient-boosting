@@ -4,8 +4,8 @@ Explanation and performance benchmark on GB algorithms (GBDT, XGBoost, LGBM, Cat
 # Gradient Boosting Decision Tree
 ## Resources:
 - Original Paper (Friedman, 1999): https://jerryfriedman.su.domains/ftp/trebst.pdf 
-- 
-- 
+- Youtube Explanation (StatQuest): https://www.youtube.com/watch?v=3CC4N4z3GJc&list=PLblh5JKOoLUJjeXUvUE0maghNuY2_5fY6
+- Scikit-Learn documentation: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html & https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html#sklearn.ensemble.GradientBoostingRegressor
 
 ## Algoirithms:
 Extracted from Original Paper: https://jerryfriedman.su.domains/ftp/trebst.pdf 
