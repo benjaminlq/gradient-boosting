@@ -169,8 +169,7 @@ To handle (1) Missing Values, (2) High sparsity in data (frequent zeroes, one-ho
 - For approximate algorithm, many blocks (subset of rows) can be created and distributed across multiple machines or store on disk in out-of-core settings. Useful to speed-up split proposals, collection of bucket statistics as well as subsample of features.
 
 #### 4.2. Cache-Aware and Out-Of-Core computation optimization
-- Cache Aware Access: allocate an internal buffer in each thread, fetch the gradient statistics into it, and then perform accumulation in
-a mini-batch manner.
+- Cache Aware Access: fetch the gradient statistics into cache memory to increase CPU speed during split determination step.
 - Out-Of-Core computation: store compressed blocks on disks and pre-fetch them using separate threads
 
 ## III. Implementations
