@@ -1,10 +1,18 @@
 # eXtreme Gradient-Boost (XGBoost)
+
 ## I. Resources
 - Original Paper (Tianqi Chen, 2016): https://arxiv.org/pdf/1603.02754.pdf
 - Youtube Explanation (StatQuest): https://www.youtube.com/watch?v=OtD8wVaFm6E&t=4s
 - XGBoost documentation: https://xgboost.readthedocs.io/en/stable/
+- LightGBM documentation: https://lightgbm.readthedocs.io/en/v3.3.2/index.html
 
 ## II. Algorithms
+#### [Histogram-Based Algorithm](https://proceedings.neurips.cc/paper_files/paper/2017/file/6449f44a102fde848669bdd9eb6b76fa-Paper.pdf)
+
+![image](https://user-images.githubusercontent.com/99384454/230736463-14ecad2f-a50d-4b75-96cd-8d6a8ea4c020.png)
+
+#### [Depth-Wise Tree Growth - Breadth First](https://lightgbm.readthedocs.io/en/v3.3.2/index.html)
+![image](https://user-images.githubusercontent.com/99384454/230736536-5cda458f-c2bc-4c4f-a80f-79e873514e92.png)
 
 ### 1. Regularized Loss Function with Gradient Tree Boosting
 
