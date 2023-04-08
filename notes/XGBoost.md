@@ -34,7 +34,7 @@ Regularization term lambda reduces the impact of data to the objective function 
 
 ### 2. Regularization
 Several regularization methods were included inside XGBoost implementation
-- Regularization Loss Function with `lambda` and `gamma` (II.1)
+- Regularization Loss Function with `lambda` and `gamma`
 - `learning-rate`: Shrinkage reduce impact of current tree to the prediction and allows future tree to improve the model.
 - **Sub-sampling** of data and features both help to reduce variance at the expense of increase bias.
 
