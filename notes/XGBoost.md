@@ -5,6 +5,7 @@
 - XGBoost documentation: https://xgboost.readthedocs.io/en/stable/
 
 ## II. Algorithms
+
 ### 1. Regularized Loss Function with Gradient Tree Boosting
 
 Compared to GBDT, xGBoost loss function add extra regularization term, which penalizes complex tree. The regularization terms penalizes the trees for having additional leaf nodes and sum of scores of the leave nodes (which increases with the number of leaf nodes).
@@ -65,3 +66,14 @@ To handle (1) Missing Values, (2) High sparsity in data (frequent zeroes, one-ho
 - Out-Of-Core computation: store compressed blocks on disks and pre-fetch them using separate threads
 
 ## III. Implementations
+
+### 1. Basic Implementation
+
+### 2. Hyper Parameter Tuning
+
+### 3. Save/Load Model
+
+### 4. Distributed Computing
+#### 4.1 XGBoost with Dask
+
+#### 4.2 XGBoost with PySpark
