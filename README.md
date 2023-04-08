@@ -150,6 +150,28 @@ Iterate through all possible splits. Guarantee to find the best possible split a
 #### 3.2 Approximate Algorithm
 Allocate continuous values into buckets (histogram) and aggregate statistics within buckets. Best split is determined based on the buckets aggregated statistics. Candidate split proposals can be computed just once at the beginning (**global**) or every iterations (**local**). **Global** method needs few proposal but requires more splits while **Local** needs more proposal (every iteration), but need fewer split.
 
+![image](https://user-images.githubusercontent.com/99384454/230474208-63e51f61-4df2-4a88-8e87-e499faecc330.png)
+
+Splits are computed using **weighted quantile sketch** algorithm, which uses a data structure that supports *merge* and *prune* operations to handle weighted datasets.
+
+#### 3.3. Sparsity-Aware Split Finding
+To handle (1) Missing Values, (2) High sparsity in data (frequent zeroes, one-hot encoding, etc). Sparsity-Aware Split Finding learns the default direction from the data for each feature. Analogical to imputation at each node. For missing values, add gain of going left and right separately and set default direction to child node giving higher gain. 
+
+![image](https://user-images.githubusercontent.com/99384454/230477228-11ea8d2c-8a25-42c3-889d-8b9ba4ae4b8a.png)
+
+### 4. Performance Improvement
+#### 4.1. Column Block
+
+![image](https://user-images.githubusercontent.com/99384454/230479088-193afdff-806e-4b1c-8cad-85ddbd5d5cd5.png)
+
+- Sorted columns stored in-memory **blocks** in compressed-column (CSC) format at the beginning.
+- For exact greedy algorithm, only 1 block
+- For approximate algorithm, many blocks (subset of rows) can be created and distributed across multiple machines or store on disk in out-of-core settings. Useful to speed-up split proposals, collection of bucket statistics as well as subsample of features.
+
+#### 4.2. Cache-Aware and Out-Of-Core computation optimization
+- Cache Aware Access: fetch the gradient statistics into cache memory to increase CPU speed during split determination step.
+- Out-Of-Core computation: store compressed blocks on disks and pre-fetch them using separate threads
+
 ## III. Implementations
 
 # Dropout Multiple Additive Regression Trees (DART)
