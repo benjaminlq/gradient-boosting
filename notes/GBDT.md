@@ -165,6 +165,6 @@ hgbdt = HistGradientBoostingRegressor(categorical_features = [0, 2])
 ``` 
 - `interaction_cst`: Specify interaction constraints or sets of features which can interact in child node splits
 ```
-# For a set of 3 features {0, 1, 2}, group features {0, 1} and {1, 2} => 0 and 2 cannot interact
+### For a set of 3 features {0, 1, 2}, group features {0, 1} and {1, 2} => 0 and 2 cannot interact ###
 hgbdt = HistGradientBoostingRegressor(interaction_cst = [{0,1},{1,2}])
 ```
