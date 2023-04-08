@@ -6,6 +6,11 @@
 
 ## II. Algorithms
 
+LGBM uses a leaf-wise tree growth algorithm, which may result in tree with higher depth (compared to depth-wise strategy).
+This may lead to model being more susceptible to overfitting and high variance. Consider to limit tree depth as a potential solution if test performance is very difference from train performance.
+
+![image](https://user-images.githubusercontent.com/99384454/230742896-c2f165b3-9959-46f5-b9a5-80aff5654130.png)
+
 ### 1. Gradient-based One-Side Sampling (GOSS)
 
 ![image](https://user-images.githubusercontent.com/99384454/230741615-c70618b8-62eb-40fd-b71c-91fbe21d2b9a.png)
