@@ -75,7 +75,30 @@ To handle (1) Missing Values, (2) High sparsity in data (frequent zeroes, one-ho
 
 ## III. Implementations
 
+```
+pip install xgboost
+```
+
 ### 1. Basic Implementation
+
+```
+from xgboost import XGBClassifier
+from sklearn.model_selection import train_test_split as tts
+from sklearn.metrics import roc_auc_score
+
+X_train, X_test, Y_train, Y_test = tts(X, Y, test_size = 0.25)
+
+xgb = XGBClassifier(n_estimators = 100, max_depth = 6, learning_rate = 0.1, objective="binary:logistic")
+
+# Train
+xgb.fit(X_train, Y_train)
+
+# Predict
+Y_preds = xgb.predict(X_test)
+
+# Validate
+auc = roc_auc_score(Y_test, Y_preds)
+```
 
 ### 2. Hyper Parameter Tuning
 
